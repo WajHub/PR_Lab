@@ -221,6 +221,42 @@ void insert_to_hashTable_new_hash(HashTable* hashTable, List *currentList, void 
     }
 }
 
+void* get_from_hash_table(struct HashTable *hashTable, hash_t key){
+    List *list = hashTable->headOfLists;
+    while(list!=NULL){
+        if(((int(*)(hash_t,hash_t))hashTable->comparator)(list->head->key,key)==0){
+            return get_from_list(list, key);
+        }
+        list = list->nextList;
+    }
+    return NULL;
+}
+
+void remove_from_hash_table(struct HashTable *hashTable, hash_t key){
+    List *list = hashTable->headOfLists;
+    while(list!=NULL){
+        if(((int(*)(hash_t,hash_t))hashTable->comparator)(list->head->key,key)==0){
+            remove_from_list(list, key);
+            if(list->head==NULL){
+                List *prev = list->prevList;
+                List *next = list->nextList;
+                if(prev!=NULL){
+                    prev->nextList = next;
+                }
+                if(next!=NULL){
+                    next->prevList = prev;
+                }
+                if(hashTable->headOfLists->head == NULL){
+                    hashTable->headOfLists = next;
+                }
+                free(list);
+            }
+            return;
+        }
+        list = list->nextList;
+    }
+}
+
 void print_hashTable(HashTable *hashTable){
     List *list = hashTable->headOfLists;
     while(list!=NULL){
@@ -249,10 +285,32 @@ int main()
     int b = 11;
     int c = 69;
     int d = 1;
+    int e = 17;
+    int f = 9;
+    int g = 18;
+    int h = 247;
     insert_to_hashTable(hashTable, &a);
     insert_to_hashTable(hashTable, &b);
     insert_to_hashTable(hashTable, &c);
     insert_to_hashTable(hashTable, &d);
+    insert_to_hashTable(hashTable, &e);
+    insert_to_hashTable(hashTable, &f);
+    insert_to_hashTable(hashTable, &g);
+    insert_to_hashTable(hashTable, &h);
+    print_element(get_from_hash_table(hashTable, 1));
+    printf("\nBefore remove\n");
+    print_hashTable(hashTable);
+    remove_from_hash_table(hashTable, 9);
+    printf("\nAfter remove\n");
+    print_hashTable(hashTable);
+
+    remove_from_hash_table(hashTable, 1);
+    printf("\nAfter remove2\n");
+    print_hashTable(hashTable);
+
+
+    remove_from_hash_table(hashTable, 9);
+    printf("\nAfter remove3\n");
     print_hashTable(hashTable);
 
     destructor_hash_table(hashTable);
