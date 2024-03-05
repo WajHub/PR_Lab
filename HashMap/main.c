@@ -1,8 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 // TODO
-// 1. Get i Remove dla hashmapy
-// 2. Poprawienie kodu (szczegolnie przekazywanie funkcji) "typedef typ_zwracany (*nowa_nazwa_typu)(typy,argumentow,kolejnych);"
+//      Poprawienie kodu  przekazywanie funkcji) "typedef typ_zwracany (*nowa_nazwa_typu)(typy,argumentow,kolejnych);"
 
 typedef int hash_t;
 hash_t hash(void *data);
@@ -10,7 +9,7 @@ int compare_hash(hash_t hash1, hash_t hash2);
 
 typedef struct Node;
 typedef struct List;
-struct List *init_list();
+struct List *init_list(hash_t (*hash)(void *),int (*compare_hash)(hash_t, hash_t), void (*printer)(List*));
 void insert_to_list(struct List* list, void *node);
 void* get_from_list(struct List *list, hash_t key);
 void remove_from_list(struct List *list, hash_t key);
@@ -18,7 +17,7 @@ void print_list(struct List *list);
 void destructor_list(struct List *list);
 
 typedef struct HashTable;
-struct HashTable *init_hash_table();
+struct HashTable *init_hash_table(hash_t (*hash)(void *),int (*compare_hash)(hash_t, hash_t), void (*printer)(List*));
 void insert_to_hashTable(struct HashTable* hashTable, void *node);
 void insert_to_hashTable_new_hash(struct HashTable* hashTable,struct List *currentList, void *node);
 void* get_from_hash_table(struct HashTable *hashTable, hash_t key);
