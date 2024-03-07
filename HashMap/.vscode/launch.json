@@ -6,8 +6,8 @@
       "type": "lldb",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/hubertwajda/SemestrIV/PR/HashMap",
-      "program": "/Users/hubertwajda/SemestrIV/PR/HashMap/build/Debug/outDebug"
+      "cwd": "/Users/hubertwajda/SemestrIV/PR/PR_Lab/HashMap",
+      "program": "/Users/hubertwajda/SemestrIV/PR/PR_Lab/HashMap/build/Debug/outDebug"
     }
   ]
 }
