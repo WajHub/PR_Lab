@@ -1,9 +1,4 @@
 #include<stdio.h>
-#include<stdlib.h>
-#include "list.c"
-#include "hashTable.c"
-
-
 int main()
 {
     HashTable *hashTable = init_hash_table(hash, compare_hash, print_element);

@@ -1,3 +1,6 @@
+#ifndef HASHTABLE
+#define HASHTABLE
+#include"list.h"
 typedef struct HashTable{
     List *headOfLists;
     void *comparator;
@@ -13,3 +16,5 @@ void* get_from_hash_table(struct HashTable *hashTable, hash_t key);
 void remove_from_hash_table(struct HashTable *hashTable, hash_t key);
 void print_hashTable(struct HashTable *hashTable);
 void destructor_hash_table(struct HashTable *hashTable);
+
+#endif /* HASHTABLE */
