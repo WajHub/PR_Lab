@@ -1,4 +1,7 @@
 #include "list.h"
+#include<stdio.h>
+#include<stdlib.h>
+
 hash_t hash(void *data){
     return *((int*)data)%10;
 }
