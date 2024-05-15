@@ -8,7 +8,7 @@
 
 int main (){
     const int sizeBuffer = 1024;
-    mkfifo("myFifo", 0777);
+    mkfifo("myfifo", 0777);
     int fd = open("myfifo", O_RDONLY);
     printf("Reader has started...\n");
     while(1){

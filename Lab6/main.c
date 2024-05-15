@@ -45,7 +45,7 @@ int main (){
             while(1){
                 char buffer[sizeBuffer];
                 read(handles[0], buffer, sizeBuffer);
-                printf("Received (original): %s\n", buffer);
+                // printf("Received (original): %s\n", buffer);
                 if(!strcmp(buffer, "exit")){
                     write(handles2[1], buffer, sizeBuffer);
                     break;
@@ -64,12 +64,12 @@ int main (){
         }
         else{
             close(handles2[1]);
-            mkfifo("myFifo", 0777);
+            // mkfifo("myFifo", 0777);
             int fd = open("myfifo", O_WRONLY);
             while(1){
                 char buffer[sizeBuffer];
                 read(handles2[0], buffer, sizeBuffer);
-                printf("Received (Converted letters): %s\n", buffer);
+                // printf("Received (Converted letters): %s\n", buffer);
                  if(!strcmp(buffer, "exit")){
                     write(fd, buffer, sizeBuffer);
                     break;
