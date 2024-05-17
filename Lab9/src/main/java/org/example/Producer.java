@@ -9,16 +9,16 @@ import static org.example.Main.isRunning;
 @AllArgsConstructor
 public class Producer implements Runnable{
     private final Magazine magazine;
-    Random rand ;
+    Random rand;
     @Override
     public void run() {
         System.out.println("Producer has started: "+Thread.currentThread().getName());
         while(isRunning){
             String commodity = Magazine.commodities[rand.nextInt(4)];
             float randomTimeToProduce = (rand.nextFloat(10)+2)*1000;
-            System.out.println(Thread.currentThread().getName()+" [Is Producing: "+commodity+"]");
+            System.out.println("P  --> "+Thread.currentThread().getName()+" [Is Producing: "+commodity+"]\n");
             if(produce(commodity, randomTimeToProduce)==0){
-                System.out.println(Thread.currentThread().getName()+" [Has Produced: "+commodity+"]");
+                System.out.println("P  --> "+Thread.currentThread().getName()+" [Has Produced: "+commodity+"]");
                 System.out.println(magazine+"\n");
             }
             else{

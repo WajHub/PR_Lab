@@ -31,4 +31,14 @@ public class Magazine {
     }
 
 
+    public synchronized int deleteCommodity(String commodity, int amount) {
+        int result = 0;
+        while(amount>0 && magazine.get(commodity)>0){
+            magazine.put(commodity, magazine.get(commodity) - 1);
+            result++;
+            amount--;
+            size--;
+        }
+        return result;
+    }
 }

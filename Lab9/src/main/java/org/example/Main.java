@@ -18,9 +18,9 @@ public class Main {
         producers.submit(new Producer(magazine, new Random()));
 
         ExecutorService consumers = Executors.newFixedThreadPool(3);
-        consumers.submit(new Consumer(magazine));
-        consumers.submit(new Consumer(magazine));
-        consumers.submit(new Consumer(magazine));
+        consumers.submit(new Consumer(magazine, new Random()));
+        consumers.submit(new Consumer(magazine, new Random()));
+        consumers.submit(new Consumer(magazine, new Random()));
 
         try {
             System.in.read();
